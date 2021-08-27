@@ -7,7 +7,7 @@
 
 ### [+] Installation
 
-```apt install python3```
+```apt install python```
 
 ```git clone https://github.com/KasRoudra/k-fuscator```
 
@@ -17,12 +17,12 @@
 
 ```bash requirements.sh```
 
-```python3 ob.py```
+```python3 kf.py```
 
 
 ### Or, Use Single Command
 ```
-apt install python3 && git clone https://github.com/KasRoudra/k-fuscator && cd k-fuscator && bash requirements.sh && python3 ob.py
+apt install python && git clone https://github.com/KasRoudra/k-fuscator && cd k-fuscator && bash requirements.sh && python3 kf.py
 ```
 
 ### Features:
@@ -35,7 +35,6 @@ apt install python3 && git clone https://github.com/KasRoudra/k-fuscator && cd k
 #### Main View:
 
 <img src="https://github.com/KasRoudra/k-fuscator/raw/main/main.jpeg">
-
 
 #### Bash Source Code
 
@@ -60,9 +59,6 @@ apt install python3 && git clone https://github.com/KasRoudra/k-fuscator && cd k
 #### Python Variable Encryption
 
 <img src="https://github.com/KasRoudra/k-fuscator/raw/main/screenshots/variable-encryption.jpeg">
-
-### [+] Encrypted/Decrypted file will be found in current directory!
-
 
 ## This repository is open source to help others. So if you wish to copy, consider giving credit!
 
