@@ -236,10 +236,10 @@ def main():
             encryptem()
         elif choose == "5" or choose=="05":
             if os.path.exists("/data/data/com.termux/files/home"):
-                os.system('xdg-open --view https://github.com/KasRoudra?tab=repositories')
+                os.system("xdg-open --view 'https://github.com/KasRoudra/KasRoudra#My-Best-Works'")
             else:
-                os.system('xdg-open https://github.com/KasRoudra?tab=repositories')
-            exit()
+                os.system("xdg-open 'https://github.com/KasRoudra/KasRoudra#My-Best-Works'")
+            main()
         elif choose == "6" or choose=="06":
             about()
         elif choose == "0":
@@ -251,7 +251,7 @@ def main():
 try:            
     main()
 except KeyboardInterrupt:
-    sprint(info+"Have a good day!")
+    sprint(info+"Thanks for using. Have a good day!")
     exit()
 except Exception as e:
     sprint(error+str(e))

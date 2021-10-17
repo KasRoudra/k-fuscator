@@ -7,13 +7,11 @@
 
 ### [+] Installation
 
-```apt install python```
+```apt install git python -y```
 
 ```git clone https://github.com/KasRoudra/k-fuscator```
 
 ```cd k-fuscator```
-
-```chmod +x *```
 
 ```bash requirements.sh```
 
@@ -22,7 +20,7 @@
 
 ### Or, Use Single Command
 ```
-apt install python && git clone https://github.com/KasRoudra/k-fuscator && cd k-fuscator && bash requirements.sh && python3 kf.py
+apt install git python -y && git clone https://github.com/KasRoudra/k-fuscator && cd k-fuscator && bash requirements.sh && python3 kf.py
 ```
 
 ### Features:
@@ -34,31 +32,31 @@ apt install python && git clone https://github.com/KasRoudra/k-fuscator && cd k-
 
 #### Main View:
 
-<img src="https://github.com/KasRoudra/k-fuscator/raw/main/main.jpeg">
+<img src="main.jpeg">
 
 #### Bash Source Code
 
-<img src="https://github.com/KasRoudra/k-fuscator/raw/main/screenshots/source-bash.jpeg">
+<img src="screenshots/source-bash.jpeg">
 
 #### Encrypted Bash
 
-<img src="https://github.com/KasRoudra/k-fuscator/raw/main/screenshots/encrypted-bash.jpeg">
+<img src="screenshots/encrypted-bash.jpeg">
 
 #### Decrypted Bash
 
-<img src="https://github.com/KasRoudra/k-fuscator/raw/main/screenshots/decrypted-bash.jpeg">
+<img src="screenshots/decrypted-bash.jpeg">
 
 #### Python Source Code
 
-<img src="https://github.com/KasRoudra/k-fuscator/raw/main/screenshots/source-py.jpeg">
+<img src="screenshots/source-py.jpeg">
 
 #### Python Emoji Encryption
 
-<img src="https://github.com/KasRoudra/k-fuscator/raw/main/screenshots/emoji-encryption.jpeg">
+<img src="screenshots/emoji-encryption.jpeg">
 
 #### Python Variable Encryption
 
-<img src="https://github.com/KasRoudra/k-fuscator/raw/main/screenshots/variable-encryption.jpeg">
+<img src="screenshots/variable-encryption.jpeg">
 
 ## This repository is open source to help others. So if you wish to copy, consider giving credit!
 
