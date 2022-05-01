@@ -1,13 +1,18 @@
-# K-fuscator
+# -*- coding: UTF-8 -*-
 
+# K-fuscator
 # Author  : KasRoudra
 # Github  : https://github.com/KasRoudra
 # Contact : https://m.me/KasRoudra
+# Language: Python(3)
+# Date    : 18-08-2021
 
-# Encrypt(obfuscate) or decrypt bash/shell script or compile python script
+# Encrypt(obfuscate) or decrypt bash script or compile python script
 
 import os, base64, sys, time
 from pprint import pformat
+
+# Emoji unicode list
 alphabet = [
     "\U0001f600",
     "\U0001f603",
@@ -20,9 +25,11 @@ alphabet = [
     "\U0001f60A",
     "\U0001f61b",
 ]
+
 MAX_STR_LEN = 70
 OFFSET = 10
 
+# Basic colors
 black="\033[0;30m"
 red="\033[0;31m"
 green="\033[0;32m"
@@ -32,63 +39,64 @@ purple="\033[0;35m"
 cyan="\033[0;36m"
 white="\033[0;37m"
 
+# Snippets
 ask = green + '\n[' + white + '?' + green + '] '+ yellow
 success = green + '\n[' + white + '√' + green + '] '
 error = red + '\n[' + white + '!' + red + '] '
 info= yellow + '\n[' + white + '+' + yellow + '] '+ cyan
 
+# Current Directory
 pwd=os.getcwd()
 
-logo='''
-'''+green +''' _  __     _____                    _
-'''+yellow+'''| |/ /    |  ___|   _ ___  ___ __ _| |_ ___  _ __
-'''+red   +'''| ' /_____| |_ | | | / __|/ __/ _` | __/ _ \| '__|
-'''+blue  +'''| . \_____|  _|| |_| \__ \ (_| (_| | || (_) | |
-'''+cyan  +'''|_|\_\    |_|   \__,_|___/\___\__,_|\__\___/|_|
-'''+purple+'''                                 [By KasRoudra]
+# Logo of K-fuscator
+logo=f'''
+{green} _  __     _____                    _
+{yellow}| |/ /    |  ___|   _ ___  ___ __ _| |_ ___  _ __
+{red}| ' /_____| |_ | | | / __|/ __/ _' | __/ _ \| '__|
+{blue}| . \_____|  _|| |_| \__ \ (_| (_| | || (_) | |
+{cyan}|_|\_\    |_|   \__,_|___/\___\__,_|\__\___/|_|
+{purple}                                 [By KasRoudra]
 
 '''
 
-def slowprint(n):
-    for word in n + '\n':
+# Normal slowly printer
+def sprint(sentence, second=0.05):
+    for word in sentence + '\n':
         sys.stdout.write(word)
         sys.stdout.flush()
-        time.sleep(0.01)
-def sprint(n):
-    for word in n + '\n':
-        sys.stdout.write(word)
-        sys.stdout.flush()
-        time.sleep(0.05)
-        
+        time.sleep(second)
+
+# About section of script
 def about():
     os.system("clear")
-    slowprint(logo)
-    print(cyan+'[ToolName]  '+purple+' :[K-fuscator] ')
-    print(cyan+'[Version]   '+purple+' :[1.0]')
-    print(cyan+'[Author]    '+purple+' :[KasRoudra] ')
-    print(cyan+'[Github]    '+purple+' :[https://github.com/KasRoudra] ')
-    print(cyan+'[Messenger] '+purple+' :[https://m.me/KasRoudra]')
-    print(cyan+'[Email]     '+purple+' :[kasroudrakrd@gmail.com]\n')
+    sprint(logo, 0.01)
+    print(f"{cyan}[ToolName]  {purple} :[K-fuscator]")
+    print(f"{cyan}[Version]   {purple} :[1.0]")
+    print(f"{cyan}[Author]    {purple} :[KasRoudra]")
+    print(f"{cyan}[Github]    {purple} :[https://github.com/KasRoudra]")
+    print(f"{cyan}[Messenger] {purple} :[https://m.me/KasRoudra]")
+    print(f"{cyan}[Email]     {purple} :[kasroudrakrd@gmail.com]\n")
     ret=input(ask+"1 for main menu, 0 for exit  > "+green)
     if ret=="1":
         main()
     else: 
         exit()
+
+# Custom path chooser
 def mover(out_file):
     move= input(ask+"Move to a custom path?(y/n) > "+green)
     if move=="y":
         mpath=input(ask+"Enter the path > "+ green)
         if os.path.exists(mpath):
-            os.system("mv -f '"+out_file+"' '"+mpath+"'")
-            sprint(success+out_file+" moved to "+mpath+"\n")
-            exit()
+            os.system(f'''mv -f "{out_file}" "{mpath}" ''')
+            sprint(f"{success}{out_file} moved to {mpath}\n")
         else:
             sprint(error+"Path do not exist!\n")
-            exit()
     else:
         print("\n")
-        exit()
-    exit()    
+    exit()
+
+# Base64 encoder function
 def obfuscate(VARIABLE_NAME, file_content):
     b64_content = base64.b64encode(file_content.encode()).decode()
     index = 0
@@ -127,7 +135,7 @@ def encode_string(in_s, alphabet):
         )
     )
 
-
+# Encrypt Bash code by npm package "bash-obfuscate"
 def encryptsh():
     in_file = input(ask + "Input Filename  > "+cyan)
     if not os.path.exists(in_file):
@@ -148,9 +156,10 @@ def encryptsh():
         filedata = temp_f.read()
         out_f.write("# Encrypted by K-fuscator\n# Github- https://github.com/KasRoudra/k-fuscator\n\n"+filedata)
     os.remove(".temp")
-    sprint(success + out_file + " saved in "+pwd)
+    sprint(f"{success}{out_file} saved in {pwd}")
     mover(out_file)
-    
+
+# Decrypt bash code by "eval"
 def decryptsh():
     in_file = input(ask + "Input File  > "+cyan)
     if not os.path.exists(in_file):
@@ -171,10 +180,10 @@ def decryptsh():
         filedata = temp_f2.read()
         out_f.write("# Decrypted by K-fuscator\n# Github- https://github.com/KasRoudra/k-fuscator\n\n"+filedata)
     os.remove(".temp2")
-    sprint(success + out_file + " saved in "+pwd)
+    sprint(f"{success}{out_file} saved in {pwd}")
     mover(out_file)
 
-       
+# Encrypting python file into base64 variable, easily decryptable
 def encryptvar():
     var= input(ask + "Variable to be used(Must Required)  > " + green)
     if (var==""):
@@ -185,7 +194,12 @@ def encryptvar():
         sprint(error+" Only one word!")
         os.system("sleep 3")
         encryptvar()
-    VARIABLE_NAME = var * 100
+    iteration = input(ask + "Iteration count for variable  > " + green)
+    try:
+        iteration = int(iteration)
+    except Exception:
+        iteration = 50
+    VARIABLE_NAME = var * iteration
     in_file = input(ask+ "Input file  > "+cyan)
     if not os.path.isfile(in_file):
         print(error+' File not found')
@@ -196,35 +210,35 @@ def encryptvar():
        file_content = in_f.read()
        obfuscated_content = obfuscate(VARIABLE_NAME, file_content)
        out_f.write("# Encrypted by K-fuscator\n# Github- https://github.com/KasRoudra/k-fuscator\n\n"+obfuscated_content)
-    sprint(success + out_file + " saved in "+pwd)
+    sprint(f"{success}{out_file} saved in {pwd}")
     mover(out_file)
 
+# Encrypting python file into emoji
 def encryptem():
     in_file= input(ask +"Input File  > "+cyan )
     if not os.path.isfile(in_file):
-            print(error+' File not found')
-            os.system("sleep 2")
-            encryptem()
+        print(error+' File not found')
+        os.system("sleep 2")
+        encryptem()
     out_file= input(ask + "Output File  > " + green)
-    with open(in_file) as in_f, open(out_file, "w") as out_f:
+    with open(in_file) as in_f, open(out_file, "w", encoding="utf-8") as out_f:
         out_f.write("# Encrypted by K-fuscator\n# Github- https://github.com/KasRoudra/k-fuscator\n\n")
         out_f.write(encode_string(in_f.read(), alphabet))
-        sprint(success+out_file+" saved in "+pwd)
+        sprint(f"{success}{out_file} saved in {pwd}")
         mover(out_file)
 
+# Main function
 def main():
     os.system("clear")
-    slowprint(logo)
-    
-    print(green+'[1]'+yellow+' Encrypt'+cyan+' Bash/Shell')
-    print(green+'[2]'+yellow+' Decrypt'+cyan+' Bash/Shell')
-    print(green+'[3]'+yellow+' Encrypt'+cyan+' Python into Variable')
-    print(green+'[4]'+yellow+' Encrypt'+cyan+' Python into emoji')
-    print(green+'[5]'+yellow+' More Tools')
-    print(green+'[6]'+yellow+' About')
-    print(green+'[0]'+yellow+' Exit\n')
-    choose = input(ask+blue+' Choose a option : '+ cyan)
-
+    sprint(logo, 0.01)
+    print(f"{green}[1]{yellow} Encrypt{cyan} Bash")
+    print(f"{green}[2]{yellow} Decrypt{cyan} Bash")
+    print(f"{green}[3]{yellow} Encrypt{cyan} Python into Variable")
+    print(f"{green}[4]{yellow} Encrypt{cyan} Python into Emoji")
+    print(f"{green}[5]{yellow} More Tools")
+    print(f"{green}[6]{yellow} About")
+    print(f"{green}[0]{yellow} Exit")
+    choose = input(f"{ask}{blue}Choose an option : {cyan}")
     while True:
         if choose == "1" or choose=="01":
             encryptsh()
@@ -248,10 +262,12 @@ def main():
             sprint(error+'Wrong input!')
             os.system("sleep 2")
             main()
-try:            
-    main()
-except KeyboardInterrupt:
-    sprint(info+"Thanks for using. Have a good day!")
-    exit()
-except Exception as e:
-    sprint(error+str(e))
+
+if __name__ == '__main__':
+    try:
+        main()
+    except KeyboardInterrupt:
+        sprint(info+"Thanks for using. Have a good day!")
+        exit()
+    except Exception as e:
+        sprint(error+str(e))
